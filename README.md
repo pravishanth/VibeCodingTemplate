@@ -20,7 +20,7 @@
 
 ## About This Template
 
-This is a **project starter template** for small teams building apps with AI agents (Cursor, Codex, Copilot). It provides the folder structure, docs, workflows, and prompts you need so the AI agent has full context from day one — no setup guesswork.
+This is a **project starter template** for small teams building apps with AI agents (Cursor, Codex, Copilot). You can use this template with **any tech stack** — frontend, backend, and tooling are up to you; the structure and workflow stay the same. It provides the folder structure, docs, workflows, and prompts you need so the AI agent has full context from day one — no setup guesswork.
 
 **What's included:**
 
