@@ -49,12 +49,6 @@ Every step has a ready-to-use prompt. See `SDLC_PROCESS.md` → **Prompting Work
 
 ## Quick Start
 
-### Prerequisites
-- Node.js 18+
-- [Expo CLI](https://docs.expo.dev/get-started/installation/) (`npm install -g expo-cli`)
-- [Supabase account](https://supabase.com) (or your backend of choice)
-- iOS Simulator (Xcode) and/or Android Emulator (Android Studio)
-
 ### Setup
 ```bash
 # Clone the repo
