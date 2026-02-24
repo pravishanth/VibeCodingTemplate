@@ -55,25 +55,6 @@ Every step has a ready-to-use prompt. See `SDLC_PROCESS.md` → **Prompting Work
 git clone [repo-url]
 cd [project-name]
 
-# Install dependencies
-npm install
-
-# Set up environment variables
-cp .env.example .env
-# Fill in your Supabase URL, anon key, etc.
-
-# Start the app
-npx expo start
-```
-
-### CLI Tool
-```bash
-# Install CLI dependencies
-cd cli/
-npm install
-
-# Run a command
-node cli/index.js [command] --[flag] [value]
 ```
 
 ---
@@ -114,63 +95,8 @@ See `docs/testing-strategy.md` for how we test.
 
 ---
 
-## Tech Stack
 
-| Layer | Tool |
-|-------|------|
-| **App** | [e.g., React Native + Expo] |
-| **Backend** | [e.g., Supabase] |
-| **Database** | [e.g., PostgreSQL + PostGIS] |
-| **Auth** | [e.g., Supabase Auth] |
-| **Maps** | [e.g., React Native Maps / Mapbox] |
-| **Testing** | [e.g., Jest, Maestro] |
-| **IDE** | Cursor |
-
----
-
-## Environment Variables
-
-Create a `.env` file in the root:
-
-```
-SUPABASE_URL=[your-supabase-url]
-SUPABASE_ANON_KEY=[your-anon-key]
-# Add other keys as needed
-```
-
-> Do NOT commit `.env` to git. It's in `.gitignore`.
-
----
-
-## Scripts
-
-```bash
-npm start          # Start Expo dev server
-npm test           # Run unit tests
-npm run lint       # Run linter
-./scripts/test-cli.sh   # Run CLI/API tests
-```
-
----
-
-## Deployment
-
-### Backend
-- [e.g., Supabase handles hosting — push schema changes via Supabase CLI]
-
-### Mobile App
-- **iOS:** [e.g., TestFlight → App Store]
-- **Android:** [e.g., Internal testing track → Play Store]
-
-```bash
-# Build for production
-npx expo build:ios
-npx expo build:android
-```
-
----
-
-## Contributing
+## Building Process
 
 1. Branch off `main` (`feature/[name]` or `fix/[name]`)
 2. Write or update the feature spec in `docs/`
