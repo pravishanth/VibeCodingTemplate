@@ -1,19 +1,75 @@
-# Architecture Decisions — [Project Name]
+# Tech Stack & Architecture Decisions — [Project Name]
 
-Record important technical decisions here so the team (and the AI agent) never has to re-debate them. Keep entries short. Add new decisions at the bottom.
+> One line on what this system does, to give context to these decisions.
 
 ---
 
-## How to Use This File
+## Tech Stack
+
+### Frontend
+| Layer | Choice | Why |
+|---|---|---|
+| Framework | | |
+| Styling | | |
+| State Management | | |
+| Routing | | |
+
+### Backend
+| Layer | Choice | Why |
+|---|---|---|
+| Runtime / Language | | |
+| Framework | | |
+| Auth | | |
+| Database | | |
+| File Storage | | |
+
+### Infrastructure & Tooling
+| Layer | Choice | Why |
+|---|---|---|
+| Hosting | | |
+| CI/CD | | |
+| Monitoring / Logging | | |
+| Package Manager | | |
+
+---
+
+## Architecture Diagram
+> Paste a diagram link or describe the high-level data flow.
+
+```
+[Client App] → [API Layer] → [Database]
+                           ↘ [File Storage]
+```
+
+---
+
+## Environment Variables
+> List all env vars needed (no values — just keys and what they're for).
+
+| Variable | Purpose |
+|---|---|
+| `API_KEY` | |
+| `DB_URL` | |
+
+---
+
+## Third-Party Services
+| Service | Purpose | Free Tier Limit |
+|---|---|---|
+| | | |
+
+---
+
+## Decision Log
+
+Record important technical decisions here so the team (and the AI agent) never has to re-debate them. Keep entries short. Add new decisions at the bottom.
+
+### How to Use This Section
 
 1. When you make a significant technical choice, add an entry below
 2. Follow the template format
 3. The AI agent reads this file to understand *why* the stack is what it is
 4. If a decision is reversed, don't delete it — mark it as **Superseded** and add the new decision
-
----
-
-## Decision Log
 
 ### ADR-001: [Title — e.g., "Supabase over Firebase"]
 - **Date:** [YYYY-MM-DD]
@@ -60,3 +116,7 @@ Record important technical decisions here so the team (and the AI agent) never h
 - **Superseded** — Replaced by a newer decision (link to it)
 - **Deprecated** — No longer relevant
 - **Proposed** — Under discussion, not finalized
+
+---
+
+_Last updated: YYYY-MM-DD | Owner: [Name]_

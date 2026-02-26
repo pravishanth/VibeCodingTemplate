@@ -4,8 +4,8 @@ A lightweight process for a small team building with AI agents.
 
 ## Contents
 
-- [How We Build (5 Phases)](#how-we-build-5-phases)
-- [Documents (5 Essential Docs)](#documents-5-essential-docs)
+- [How We Build (6 Phases)](#how-we-build-6-phases)
+- [Documents](#documents)
 - [How We Work With AI Agents](#how-we-work-with-ai-agents)
 - [CI/CD Pipeline](#cicd-pipeline-automated-on-every-pr)
 - [Git Workflow](#git-workflow)
@@ -17,18 +17,34 @@ A lightweight process for a small team building with AI agents.
 
 ---
 
-## How We Build (5 Phases)
+## How We Build (6 Phases)
+
+### Phase 0: Discovery (1–2 weeks)
+
+**Goal:** Understand the problem, the users, and what's worth building before writing any specs.
+
+This is the creative phase — thinking before building. All discovery docs live in `docs/discovery/`.
+
+- Define the **Problem Statement** → `docs/discovery/problem-statement.md`
+- Identify **Personas** → `docs/discovery/personas.md`
+- **Prioritize** features using MoSCoW → `docs/discovery/prioritization.md`
+- Break work into **Epics** → `docs/discovery/epics/[epic-name].md`
+- Write **User Stories** per epic → `docs/discovery/stories/[epic-name]/[story-name].md`
+
+**Output:** Clear understanding of the problem, users, MVP scope, and feature breakdown.
+
+**What flows into the next phase:** Discovery outputs become the inputs for Phase 1. The problem statement and personas feed the PRD. Prioritization defines MVP scope. Epics become feature specs. User stories become acceptance criteria.
 
 ### Phase 1: Define & Design (1–2 weeks)
 
 **Goal:** Know exactly what you're building before writing code.
 
-- Write the **Product Brief** → `docs/prd.md`
+- Synthesize discovery into the **Product Brief** → `docs/prd.md`
 - Define the **Data Model** → `docs/data-model.md`
+- Pick your **Tech Stack** and log decisions → `docs/tech-stack-decisions.md` and `.cursor/rules/project.mdc`
 - Sketch **Screen Flows** → Figma, Excalidraw, or paper
-- Pick your **Tech Stack** and document in `README.md` and `.cursor/rules/project.mdc`
 
-**Output:** Filled-in PRD, data model, wireframes.
+**Output:** Filled-in PRD, data model, tech stack decisions, wireframes.
 
 ### Phase 2: Build the Engine (2–4 weeks)
 
@@ -84,19 +100,31 @@ A lightweight process for a small team building with AI agents.
 
 ---
 
-## Documents (5 Essential Docs)
+## Documents
+
+### Discovery Docs (Phase 0)
+
+| Document | Path | Purpose |
+|----------|------|---------|
+| **Problem Statement** | `docs/discovery/problem-statement.md` | What pain we're solving and why |
+| **Personas** | `docs/discovery/personas.md` | Who the users are, their goals, frustrations |
+| **Prioritization** | `docs/discovery/prioritization.md` | MoSCoW priorities + MVP definition |
+| **Epics** | `docs/discovery/epics/[epic].md` | Major feature areas |
+| **User Stories** | `docs/discovery/stories/[epic]/[story].md` | Detailed requirements per epic |
+
+### Execution Docs (Phase 1+)
 
 | Document | Path | Purpose | When |
 |----------|------|---------|------|
 | **Product Brief** | `docs/prd.md` | What we're building and why | Phase 1 |
 | **Data Model** | `docs/data-model.md` | Tables, fields, relationships | Phase 1 |
+| **Tech Stack & Decisions** | `docs/tech-stack-decisions.md` | Stack choices + architecture decision log | Phase 1 |
 | **Screen Flows** | Figma / Excalidraw | How users move through the app | Phase 1 |
 | **Feature Specs** | `docs/[feature].md` | Per-feature detail for the agent | Phase 2–3 |
 | **README** | `README.md` | Setup, run, test, deploy | Phase 2 |
 
 Supporting docs (already in the repo):
 - Agent instructions: `.cursor/rules/project.mdc`
-- Architecture decisions: `docs/decisions.md`
 - Testing strategy: `docs/testing-strategy.md`
 - CLI guide: `HowToBuildCLI.md`
 - Build & test philosophy: `buildAndTestEngine.md`
@@ -107,33 +135,52 @@ Supporting docs (already in the repo):
 
 ### The Agent's Context Chain
 ```
-.cursor/rules/project.mdc    ← Auto-loaded on every prompt (conventions, stack, rules)
+docs/discovery/                  ← Problem, personas, priorities, epics, stories (creative thinking)
         ↓
-docs/prd.md                  ← Product context (what are we building)
+.cursor/rules/project.mdc       ← Auto-loaded on every prompt (conventions, stack, rules)
         ↓
-docs/decisions.md            ← Architecture decisions (why we chose X over Y)
+docs/prd.md                     ← Product context (what are we building)
         ↓
-docs/data-model.md           ← Schema truth (what data exists)
+docs/tech-stack-decisions.md     ← Tech stack + architecture decisions (what we chose and why)
         ↓
-docs/[feature].md            ← Feature spec (what to build right now)
+docs/data-model.md               ← Schema truth (what data exists)
         ↓
-CLI                          ← Verification loop (did it work?)
+docs/[feature].md                ← Feature spec (what to build right now)
+        ↓
+CLI                              ← Verification loop (did it work?)
         ↓
 Feedback → Update feature spec → Prompt agent again
 ```
 
 ### Prompting Workflow
 
-#### Phase 1: Idea → Specs
+#### Phase 0: Discovery
 
 **To explore an idea:**
 > "I want to build [idea]. Help me think through: Who would use it? What problem does it solve? What are similar apps? What would the MVP look like?"
 
+**To define the problem:**
+> "Based on our discussion, fill in `docs/discovery/problem-statement.md`. Define the core pain point, who has it, why existing solutions fall short, and what success looks like."
+
+**To define personas:**
+> "Read `docs/discovery/problem-statement.md`. Define the user personas in `docs/discovery/personas.md` — who they are, their goals, frustrations, and how they'll use this product."
+
+**To prioritize features:**
+> "Read `docs/discovery/problem-statement.md` and `docs/discovery/personas.md`. List all potential features. Prioritize them using MoSCoW in `docs/discovery/prioritization.md`. Define the MVP."
+
+**To create an epic:**
+> "Read `docs/discovery/prioritization.md`. Create an epic for [feature area] in `docs/discovery/epics/[epic-name].md` using the template. Include scope, high-level features, and acceptance criteria."
+
+**To write user stories:**
+> "Read `docs/discovery/epics/[epic-name].md`. Break it into user stories in `docs/discovery/stories/[epic-name]/[story-name].md`. Each story should have acceptance criteria and edge cases."
+
+#### Phase 1: Discovery → Specs
+
 **To draft the PRD:**
-> "Based on our discussion, write a product brief to `docs/prd.md` using the template. Include problem, target users, MVP features, and success metrics."
+> "Read `docs/discovery/problem-statement.md`, `docs/discovery/personas.md`, and `docs/discovery/prioritization.md`. Synthesize them into a product brief at `docs/prd.md`."
 
 **To research and decide the tech stack:**
-> "I'm building [type of app] with [constraints]. Research the best stack options. Compare trade-offs. Write your recommendations to `docs/decisions.md`."
+> "I'm building [type of app] with [constraints]. Research the best stack options. Compare trade-offs. Write your recommendations to `docs/tech-stack-decisions.md`."
 
 **To design the data model:**
 > "Read `docs/prd.md`. Design the database schema — tables, fields, relationships, indexes. Write to `docs/data-model.md`."
@@ -354,8 +401,8 @@ The GitHub Issue is where it's *reported*. The feature spec is where the agent *
 
 | # | 8090 Module | What It Does | Your Template Equivalent | File |
 |---|-------------|-------------|--------------------------|------|
-| ① | **Refinery** | Refine requirements — turn vague ideas into clear specs | PRD + Feature Spec | `docs/prd.md` + `docs/[feature].md` |
-| ② | **Foundry** | Capture architecture & engineering decisions early | Data Model + Decisions + Agent Rules | `docs/data-model.md` + `docs/decisions.md` + `.cursor/rules/project.mdc` |
+| ① | **Refinery** | Refine requirements — turn vague ideas into clear specs | Discovery + PRD + Feature Spec | `docs/discovery/` + `docs/prd.md` + `docs/[feature].md` |
+| ② | **Foundry** | Capture architecture & engineering decisions early | Data Model + Tech Stack & Decisions + Agent Rules | `docs/data-model.md` + `docs/tech-stack-decisions.md` + `.cursor/rules/project.mdc` |
 | ③ | **Planner** | Turn product intent into structured work orders | Feature Spec (acceptance criteria, data, API, screens) | `docs/[feature].md` |
 | ④ | **Validator** | Convert feedback into actionable tasks | Testing Strategy + Feedback Loop + CI/CD | `docs/testing-strategy.md` + GitHub Issues + `.github/workflows/ci.yml` |
 
@@ -393,7 +440,7 @@ When the agent builds from a feature spec with clear acceptance criteria, you ve
 
 > *"The important decisions these days are language/ecosystem and dependencies."*
 
-This is why `docs/decisions.md` exists — log your stack choices and why, so the agent (and future-you) never re-debates them.
+This is why `docs/tech-stack-decisions.md` exists — log your stack choices and why, so the agent (and future-you) never re-debates them.
 
 ### Prompts Got Shorter
 
